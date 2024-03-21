@@ -4,6 +4,7 @@ const socketio = require('socket.io');
 const path = require('path');
 const { setupSockets } = require('./sockets');
 let app = express();
+const cors = require('cors');
 
 
 let port = process.env.PORT;
@@ -17,6 +18,10 @@ setupSockets(io);
 function setupMiddlewares() {
     // Deploy public directory
     app.use(express.static(path.resolve(__dirname, '../public')));
+
+    // CORS 
+    app.use(cors());
+
 }
 
 function startServer() {
